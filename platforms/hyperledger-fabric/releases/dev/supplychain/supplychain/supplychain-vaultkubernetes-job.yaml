@@ -17,12 +17,12 @@ spec:
       component_type: orderer
       namespace: supplychain-net    
       images:
-        alpineutils: index.docker.io/hyperledger/alpine-utils:1.0
+        alpineutils: index.docker.io/hyperledgerlabs/alpine-utils:1.0
 
     vault:
       reviewer_service: vault-reviewer
       role: vault-role
-      address: http://139.59.53.205:8200
+      address: http://174.138.120.210:8200
       authpath: localsupplychain-net-auth
       policy: vault-crypto-orderer-supplychain-net-ro
       secret_path: secretsv2
@@ -30,4 +30,4 @@ spec:
       imagesecretname: regcred
     
     k8s:
-      kubernetes_url: https://5a9c87a4-46a1-42bb-bcb7-f07f66708a23.k8s.ondigitalocean.com
+      kubernetes_url: https://ca2e45f3-0d74-4027-8fa9-955a1ab9d5d2.k8s.ondigitalocean.com
