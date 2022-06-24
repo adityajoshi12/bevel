@@ -22,10 +22,10 @@ spec:
 
     vault:
       role: vault-role
-      address: http://20.219.222.226:8200
+      address: http://20.207.95.88:8200
       authpath: devsupplychain-net-auth
-      secretcryptoprefix: secretv2/data/crypto/ordererOrganizations/supplychain-net/ca
-      secretcredentialsprefix: secretv2/data/credentials/supplychain-net/ca/supplychain
+      secretcryptoprefix: kv/data/crypto/ordererOrganizations/supplychain-net/ca
+      secretcredentialsprefix: kv/data/credentials/supplychain-net/ca/supplychain
       serviceaccountname: vault-auth
       imagesecretname: regcred
       
