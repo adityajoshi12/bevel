@@ -22,7 +22,7 @@ spec:
     vault:
       reviewer_service: vault-reviewer
       role: vault-role
-      address: http://20.207.95.88:8200
+      address: http://20.207.194.65:8200
       authpath: devsupplychain-net-auth
       policy: vault-crypto-orderer-supplychain-net-ro
       secret_path: secretv2
