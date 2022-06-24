@@ -22,7 +22,7 @@ spec:
     vault:
       reviewer_service: vault-reviewer
       role: vault-role
-      address: http://20.207.95.88:8200
+      address: http://20.207.194.65:8200
       authpath: devcarrier-net-auth
       policy: vault-crypto-peer-carrier-net-ro
       secret_path: secretv2
@@ -30,4 +30,4 @@ spec:
       imagesecretname: regcred
     
     k8s:
-      kubernetes_url: https://bevel-dns-642b8c2b.hcp.centralindia.azmk8s.io:443
+      kubernetes_url: https://bevel-dns-bb9f3512.hcp.centralindia.azmk8s.io:443
