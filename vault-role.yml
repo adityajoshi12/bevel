@@ -1,0 +1,50 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: vault
+  namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: vault
+    namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: vault
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: vault
+  namespace: default
+rules:
+  - verbs:
+      - get
+      - update
+      - patch
+    apiGroups:
+      - ''
+    resources:
+      - pods
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: vault-server-binding
+  labels:
+    app.kubernetes.io/instance: vault
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: vault
+    helm.sh/chart: vault-0.19.0
+  annotations:
+    meta.helm.sh/release-name: vault
+    meta.helm.sh/release-namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: vault
+    namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:auth-delegator
