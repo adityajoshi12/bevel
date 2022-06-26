@@ -122,6 +122,7 @@ spec:
                   {
                     \"token_reviewer_jwt\": \"${REVIEWER_TOKEN}\",
                     \"kubernetes_host\": \"${KUBERNETES_URL}\",
+                    \"disable_iss_validation\":\"true\",
                     \"kubernetes_ca_cert\": \"${KUBE_SA_CRT_ONELINE}\"
                   }" > payload.json
 
