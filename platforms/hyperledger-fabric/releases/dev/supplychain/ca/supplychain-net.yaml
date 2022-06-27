@@ -1,0 +1,50 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: supplychain-net-ca
+  namespace: supplychain-net
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: supplychain-net-ca
+  chart:
+    git: ssh://git@github.com/adityajoshi12/bevel.git
+    ref: test
+    path: platforms/hyperledger-fabric/charts/ca    
+  values:
+    deployment:
+      annotations:
+    annotations:  
+      service:
+      pvc:
+    metadata:
+      namespace: supplychain-net
+      images:
+        alpineutils: index.docker.io/hyperledgerlabs/alpine-utils:1.0
+        ca: hyperledger/fabric-ca:1.4.8
+    server:
+      name: ca
+      tlsstatus: true
+      admin: supplychain-admin
+        
+    storage:
+      storageclassname: supplychainsc
+      storagesize: 512Mi 
+    vault:
+      role: vault-role
+      address: http://40.80.95.183:8200
+      authpath: devsupplychain-net-auth
+      secretcert: secretv2/data/crypto/ordererOrganizations/supplychain-net/ca?ca.supplychain-net-cert.pem
+      secretkey: secretv2/data/crypto/ordererOrganizations/supplychain-net/ca?supplychain-net-CA.key
+      secretadminpass: secretv2/data/credentials/supplychain-net/ca/supplychain?user
+      serviceaccountname: vault-auth
+      imagesecretname: regcred
+    service:
+      servicetype: ClusterIP
+      ports:
+        tcp:
+          port: 7054
+    proxy:
+      provider: none
+      type: orderer
+      external_url_suffix: develop.local.com
