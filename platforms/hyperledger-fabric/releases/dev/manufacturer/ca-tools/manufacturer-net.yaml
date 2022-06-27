@@ -1,0 +1,79 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: manufacturer-net-ca-tools
+  namespace: manufacturer-net
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: manufacturer-net-ca-tools
+  chart:
+    git: ssh://git@github.com/adityajoshi12/bevel.git
+    ref: test
+    path: platforms/hyperledger-fabric/charts/catools
+  values:
+    metadata:
+      namespace: manufacturer-net
+      name: ca-tools
+      component_type: peer
+      org_name: manufacturer
+      proxy: none
+    annotations:  
+      service:
+      pvc:
+      deployment:
+    replicaCount: 1
+
+    image:
+      repository: hyperledger/fabric-ca-tools
+      tag: 1.2.1
+      pullPolicy: IfNotPresent
+      alpineutils: index.docker.io/hyperledgerlabs/alpine-utils:1.0
+      
+    storage:
+      storageclassname: manufacturersc
+      storagesize: 512Mi
+    
+    vault:
+      role: vault-role
+      address: http://40.80.95.183:8200
+      authpath: devmanufacturer-net-auth
+      secretmsp: secretv2/data/crypto/peerOrganizations/manufacturer-net/users/admin/msp
+      secrettls: secretv2/data/crypto/peerOrganizations/manufacturer-net/users/admin/tls
+      secretorderer: secretv2/data/crypto/peerOrganizations/manufacturer-net/orderers
+      secretpeer: secretv2/data/crypto/peerOrganizations/manufacturer-net/peers
+      secretpeerorderertls: secretv2/data/crypto/peerOrganizations/manufacturer-net/orderer/tls
+      secretambassador: secretv2/data/crypto/peerOrganizations/manufacturer-net/ambassador
+      secretcert: secretv2/data/crypto/peerOrganizations/manufacturer-net/ca?ca.manufacturer-net-cert.pem
+      secretkey: secretv2/data/crypto/peerOrganizations/manufacturer-net/ca?manufacturer-net-CA.key
+      secretcouchdb: secretv2/data/credentials/manufacturer-net/couchdb/manufacturer
+      secretconfigfile: secretv2/data/crypto/peerOrganizations/manufacturer-net/msp/config
+      serviceaccountname: vault-auth
+      imagesecretname: regcred
+    
+    healthcheck: 
+      retries: 10
+      sleepTimeAfterError: 2
+
+    
+    org_data:
+      external_url_suffix: develop.local.com
+      component_subject: O=Manufacturer,OU=Manufacturer,L=47.38/8.54/Zurich,C=CH
+      cert_subject: O=Manufacturer/OU=Manufacturer/L=47.38,8.54,Zurich/C=CH
+      component_country: CH
+      component_state: Zurich
+      component_location: Zurich
+      ca_url: ca.manufacturer-net:7054
+
+    orderers:
+      name: orderer1-
+    orderers_info:
+      - name: orderer1
+        path: "certs/orderer1-ca.crt"
+
+    peers:
+      name: peer0,-      
+    peer_count: "1"
+
+    checks:
+      refresh_cert_value: False
