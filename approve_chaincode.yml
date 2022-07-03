@@ -184,11 +184,10 @@ spec:
             - '-c'
           args:
             - >-
-              #!/bin/bash sh
-
+              #!/bin/bash sh -x
 
               ## Checking approved chaincode
-
+              
               echo $COMMIT_ARGUMENTS>COMMIT_ARGUMENTS.txt
 
               COMMIT_ARGUMENTS=$(< COMMIT_ARGUMENTS.txt)
@@ -197,6 +196,7 @@ spec:
               echo "Extracting package id"
 
               peer lifecycle chaincode queryinstalled > log.txt
+              
 
               PACKAGE_ID=$(cat log.txt | grep
               "${CHAINCODE_NAME}_${CHAINCODE_VERSION}" | sed -n
