@@ -2,32 +2,29 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: approvechaincode-peer0-supplychain-1-1
-  namespace: carrier-net
+  namespace: manufacturer-net
   labels:
     app: approvechaincode-peer0-supplychain-1-1
-    app.kubernetes.io/instance: approve-carrier-allchannel-peer0supplychain1-1
+    app.kubernetes.io/instance: approve-manufacturer-allchannel-peer0supplychain1-1
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: approvechaincode-supplychain-1-1
     helm.sh/chart: approve_chaincode-0.2.0
   annotations:
-    helm.fluxcd.io/antecedent: carrier-net:helmrelease/approve-carrier-allchannel-peer0supplychain1-1
-    meta.helm.sh/release-name: approve-carrier-allchannel-peer0supplychain1-1
-    meta.helm.sh/release-namespace: carrier-net
+    helm.fluxcd.io/antecedent: >-
+      manufacturer-net:helmrelease/approve-manufacturer-allchannel-peer0supplychain1-1
+    meta.helm.sh/release-name: approve-manufacturer-allchannel-peer0supplychain1-1
+    meta.helm.sh/release-namespace: manufacturer-net
 spec:
   parallelism: 1
   completions: 1
-  backoffLimit: 10
-  selector:
-    matchLabels:
-      controller-uid: 900bef2e-edd1-41a7-b68b-6930d1ec6153
+  backoffLimit: 6
   template:
     metadata:
       creationTimestamp: null
       labels:
         app: approvechaincode-peer0-supplychain-1-1
-        app.kubernetes.io/instance: approve-carrier-allchannel-peer0supplychain1-1
+        app.kubernetes.io/instance: approve-manufacturer-allchannel-peer0supplychain1-1
         app.kubernetes.io/name: approvechaincode-supplychain1-1
-        controller-uid: 900bef2e-edd1-41a7-b68b-6930d1ec6153
         helm.sh/chart: approve_chaincode-0.2.0
         job-name: approvechaincode-peer0-supplychain-1-1
     spec:
@@ -162,13 +159,14 @@ spec:
             - name: VAULT_ADDR
               value: http://40.80.95.60:8200
             - name: KUBERNETES_AUTH_PATH
-              value: devcarrier-net-auth
+              value: devmanufacturer-net-auth
             - name: VAULT_APP_ROLE
               value: vault-role
             - name: VAULT_PEER_SECRET_PREFIX
-              value: secretv2/data/crypto/peerOrganizations/carrier-net/users/admin
+              value: >-
+                secretv2/data/crypto/peerOrganizations/manufacturer-net/users/admin
             - name: VAULT_ORDERER_SECRET_PREFIX
-              value: secretv2/data/crypto/peerOrganizations/carrier-net/orderer
+              value: secretv2/data/crypto/peerOrganizations/manufacturer-net/orderer
             - name: MOUNT_PATH
               value: /secret
           resources: {}
@@ -190,18 +188,6 @@ spec:
 
 
               ## Checking approved chaincode
-
-              APPROVED=$(peer lifecycle chaincode queryapproved --channelID
-              ${CHANNEL_NAME} --name ${CHAINCODE_NAME} -O json | \
-                jq --arg SEQUENCE "${CHAINCODE_SEQUENCE}" --arg VERSION "$CHAINCODE_VERSION" \
-                'select((.sequence|tostring)==$SEQUENCE and (.version|tostring)==$VERSION)')
-              if [ -n "${APPROVED}" ]
-
-              then
-                echo "chaincode ${CHAINCODE_NAME} with version ${CHAINCODE_VERSION} and sequence ${CHAINCODE_SEQUENCE} is approved in channel ${CHANNEL_NAME}, skipping... "
-                exit 0
-              fi
-
 
               echo $COMMIT_ARGUMENTS>COMMIT_ARGUMENTS.txt
 
@@ -243,11 +229,11 @@ spec:
             - name: FABRIC_LOGGING_SPEC
               value: debug
             - name: CORE_PEER_ID
-              value: peer0.carrier-net
+              value: peer0.manufacturer-net
             - name: CORE_PEER_ADDRESS
-              value: peer0.carrier-net:7051
+              value: peer0.manufacturer-net:7051
             - name: CORE_PEER_LOCALMSPID
-              value: carrierMSP
+              value: manufacturerMSP
             - name: CORE_PEER_TLS_ENABLED
               value: 'true'
             - name: CORE_PEER_TLS_ROOTCERT_FILE
