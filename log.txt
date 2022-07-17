@@ -1024,3 +1024,419 @@ ok: [localhost] => {"changed": false, "gid": 1000, "group": "1000", "mode": "077
 
 TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : Execute git push for ssh] ***
 task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:15
+changed: [localhost] => {"changed": true, "cmd": "cd \"/home/bevel/platforms/hyperledger-fabric/configuration/../../../\"\necho \"---------------GIT PUSH---------------\"\nexport GIT_SSH_COMMAND='ssh -i /home/bevel/build/gitops'\ngit config user.email adityaprakashjoshi1@gmail.com\ngit config user.name adityajoshi12\ngit --git-dir=/home/bevel/platforms/hyperledger-fabric/configuration/../../..//.git add -A .\n\n# To ignore a directory add it add reset path\nreset_path=platforms/hyperledger-fabric/configuration\nif [ -n \"$reset_path\" ]; then\n    git --git-dir=/home/bevel/platforms/hyperledger-fabric/configuration/../../..//.git reset \"platforms/hyperledger-fabric/configuration\"\nfi  \n\ngit --git-dir=/home/bevel/platforms/hyperledger-fabric/configuration/../../..//.git commit -s -m \"[ci skip] Pushing deployment files for namespace, service accounts and clusterrolebinding\" || true\ngit --git-dir=/home/bevel/platforms/hyperledger-fabric/configuration/../../..//.git push ssh://git@github.com/adityajoshi12/bevel.git HEAD:test  \n", "delta": "0:00:02.406890", "end": "2022-07-17 16:13:26.198876", "msg": "", "rc": 0, "start": "2022-07-17 16:13:23.791986", "stderr": "fatal: not in a git directory\nfatal: not in a git directory\nTo ssh://github.com/adityajoshi12/bevel.git\n   7a9fa21..97521d5  HEAD -> test", "stderr_lines": ["fatal: not in a git directory", "fatal: not in a git directory", "To ssh://github.com/adityajoshi12/bevel.git", "   7a9fa21..97521d5  HEAD -> test"], "stdout": "---------------GIT PUSH---------------\nUnstaged changes after reset:\nM\tplatforms/hyperledger-fabric/configuration/roles/k8_component/templates/reviewer_rbac.tpl\n[main 97521d5] [ci skip] Pushing deployment files for namespace, service accounts and clusterrolebinding\n 1 file changed, 135 insertions(+)", "stdout_lines": ["---------------GIT PUSH---------------", "Unstaged changes after reset:", "M\tplatforms/hyperledger-fabric/configuration/roles/k8_component/templates/reviewer_rbac.tpl", "[main 97521d5] [ci skip] Pushing deployment files for namespace, service accounts and clusterrolebinding", " 1 file changed, 135 insertions(+)"]}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : Execute git push for https] ***
+task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:41
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : stdout for SSH gitpush] ***
+task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:65
+ok: [localhost] => {
+    "msg": [
+        "---------------GIT PUSH---------------",
+        "Unstaged changes after reset:",
+        "M\tplatforms/hyperledger-fabric/configuration/roles/k8_component/templates/reviewer_rbac.tpl",
+        "[main 97521d5] [ci skip] Pushing deployment files for namespace, service accounts and clusterrolebinding",
+        " 1 file changed, 135 insertions(+)"
+    ]
+}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : stderr for SSH gitpush] ***
+task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:74
+ok: [localhost] => {
+    "msg": [
+        "fatal: not in a git directory",
+        "fatal: not in a git directory",
+        "To ssh://github.com/adityajoshi12/bevel.git",
+        "   7a9fa21..97521d5  HEAD -> test"
+    ]
+}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : stdout for gitpush] ***
+task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:84
+skipping: [localhost] => {}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : stderr for git_push] ***
+task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:92
+skipping: [localhost] => {}
+META: role_complete for localhost
+
+TASK [Checking for the carrier-net-role-tokenreview-binding] *******************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/namespace_vaultauth/tasks/main.yaml:92
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [Including the check for ServiceAccount vault-reviewer in carrier-net] ****
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/namespace_vaultauth/tasks/main.yaml:105
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/k8_component : Check ServiceAccount vault-reviewer is created] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/k8_component/tasks/main.yaml:13
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/k8_component : Wait for ServiceAccount vault-reviewer] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/k8_component/tasks/main.yaml:23
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/k8_component : Check ServiceAccount vault-reviewer is created] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/k8_component/tasks/main.yaml:38
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/k8_component : Wait for ServiceAccount vault-reviewer] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/k8_component/tasks/main.yaml:51
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+ok: [localhost] => {"api_found": true, "attempts": 1, "changed": false, "resources": [{"apiVersion": "v1", "kind": "ServiceAccount", "metadata": {"annotations": {"fluxcd.io/sync-checksum": "b58363452cf175c51393cb14895aa328f29926fb", "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"ServiceAccount\",\"metadata\":{\"annotations\":{\"fluxcd.io/sync-checksum\":\"b58363452cf175c51393cb14895aa328f29926fb\"},\"labels\":{\"fluxcd.io/sync-gc-mark\":\"sha256.tHxyhRAyNW-IgH_c1xKvrd3n1zb9DYhKVisIJDA0fcU\"},\"name\":\"vault-reviewer\",\"namespace\":\"carrier-net\"}}\n"}, "creationTimestamp": "2022-07-17T14:57:25Z", "labels": {"fluxcd.io/sync-gc-mark": "sha256.tHxyhRAyNW-IgH_c1xKvrd3n1zb9DYhKVisIJDA0fcU"}, "managedFields": [{"apiVersion": "v1", "fieldsType": "FieldsV1", "fieldsV1": {"f:secrets": {".": {}, "k:{\"name\":\"vault-reviewer-token-c58fp\"}": {".": {}, "f:name": {}}}}, "manager": "kube-controller-manager", "operation": "Update", "time": "2022-07-17T14:57:25Z"}, {"apiVersion": "v1", "fieldsType": "FieldsV1", "fieldsV1": {"f:metadata": {"f:annotations": {".": {}, "f:fluxcd.io/sync-checksum": {}, "f:kubectl.kubernetes.io/last-applied-configuration": {}}, "f:labels": {".": {}, "f:fluxcd.io/sync-gc-mark": {}}}}, "manager": "kubectl", "operation": "Update", "time": "2022-07-17T14:57:25Z"}], "name": "vault-reviewer", "namespace": "carrier-net", "resourceVersion": "68586", "uid": "7a24a4fa-a29b-4219-9bb6-a9691d72ad28"}, "secrets": [{"name": "vault-reviewer-token-c58fp"}]}]}
+META: role_complete for localhost
+
+TASK [Including the check for ServiceAccount vault-auth in carrier-net] ********
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/namespace_vaultauth/tasks/main.yaml:117
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/k8_component : Check ServiceAccount vault-auth is created] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/k8_component/tasks/main.yaml:13
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/k8_component : Wait for ServiceAccount vault-auth] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/k8_component/tasks/main.yaml:23
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/k8_component : Check ServiceAccount vault-auth is created] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/k8_component/tasks/main.yaml:38
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/k8_component : Wait for ServiceAccount vault-auth] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/k8_component/tasks/main.yaml:51
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+ok: [localhost] => {"api_found": true, "attempts": 1, "changed": false, "resources": [{"apiVersion": "v1", "kind": "ServiceAccount", "metadata": {"annotations": {"fluxcd.io/sync-checksum": "1f1e2eea45453e92f0290eba38f04db3a5b9e630", "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"ServiceAccount\",\"metadata\":{\"annotations\":{\"fluxcd.io/sync-checksum\":\"1f1e2eea45453e92f0290eba38f04db3a5b9e630\"},\"labels\":{\"fluxcd.io/sync-gc-mark\":\"sha256.WJM3Wl3RRTm53NxsYh1jBuh55cJe6Xh-1He7iqeV2ek\"},\"name\":\"vault-auth\",\"namespace\":\"carrier-net\"}}\n"}, "creationTimestamp": "2022-07-17T14:57:25Z", "labels": {"fluxcd.io/sync-gc-mark": "sha256.WJM3Wl3RRTm53NxsYh1jBuh55cJe6Xh-1He7iqeV2ek"}, "managedFields": [{"apiVersion": "v1", "fieldsType": "FieldsV1", "fieldsV1": {"f:secrets": {".": {}, "k:{\"name\":\"vault-auth-token-t6482\"}": {".": {}, "f:name": {}}}}, "manager": "kube-controller-manager", "operation": "Update", "time": "2022-07-17T14:57:25Z"}, {"apiVersion": "v1", "fieldsType": "FieldsV1", "fieldsV1": {"f:metadata": {"f:annotations": {".": {}, "f:fluxcd.io/sync-checksum": {}, "f:kubectl.kubernetes.io/last-applied-configuration": {}}, "f:labels": {".": {}, "f:fluxcd.io/sync-gc-mark": {}}}}, "manager": "kubectl", "operation": "Update", "time": "2022-07-17T14:57:25Z"}], "name": "vault-auth", "namespace": "carrier-net", "resourceVersion": "68583", "uid": "1bf369e3-e820-4501-a6be-2f2de86f41fb"}, "secrets": [{"name": "vault-auth-token-t6482"}]}]}
+META: role_complete for localhost
+META: role_complete for localhost
+
+TASK [Setup Vault Kubernetes for each organization] ****************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/deploy-network.yaml:40
+
+TASK [Waiting for the namespace supplychain-net to be created] *****************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/setup/vault_kubernetes/tasks/main.yaml:13
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/k8_component : Check Namespace supplychain-net is created] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/k8_component/tasks/main.yaml:13
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/k8_component : Wait for Namespace supplychain-net] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/k8_component/tasks/main.yaml:23
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+ok: [localhost] => {"api_found": true, "attempts": 1, "changed": false, "resources": [{"apiVersion": "v1", "kind": "Namespace", "metadata": {"annotations": {"fluxcd.io/sync-checksum": "3e3781467b99451b319066d41d04f59361cb913c", "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Namespace\",\"metadata\":{\"annotations\":{\"fluxcd.io/sync-checksum\":\"3e3781467b99451b319066d41d04f59361cb913c\"},\"labels\":{\"fluxcd.io/sync-gc-mark\":\"sha256.IRMe38eshOFNiqK6H_-MMMrpvi2hqekrWRR1_-joSn0\"},\"name\":\"supplychain-net\"}}\n"}, "creationTimestamp": "2022-07-17T14:53:22Z", "labels": {"fluxcd.io/sync-gc-mark": "sha256.IRMe38eshOFNiqK6H_-MMMrpvi2hqekrWRR1_-joSn0", "kubernetes.io/metadata.name": "supplychain-net"}, "managedFields": [{"apiVersion": "v1", "fieldsType": "FieldsV1", "fieldsV1": {"f:metadata": {"f:annotations": {".": {}, "f:fluxcd.io/sync-checksum": {}, "f:kubectl.kubernetes.io/last-applied-configuration": {}}, "f:labels": {".": {}, "f:fluxcd.io/sync-gc-mark": {}, "f:kubernetes.io/metadata.name": {}}}}, "manager": "kubectl", "operation": "Update", "time": "2022-07-17T14:53:22Z"}], "name": "supplychain-net", "resourceVersion": "67776", "uid": "330aafdc-420a-41a2-ae63-18619e94623e"}, "spec": {"finalizers": ["kubernetes"]}, "status": {"phase": "Active"}}]}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/k8_component : Check Namespace supplychain-net is created] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/k8_component/tasks/main.yaml:38
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/k8_component : Wait for Namespace supplychain-net] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/k8_component/tasks/main.yaml:51
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+META: role_complete for localhost
+
+TASK [Create docker credentials secret] ****************************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/setup/vault_kubernetes/tasks/main.yaml:23
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+redirecting (type: modules) ansible.builtin.k8s to kubernetes.core.k8s
+redirecting (type: modules) ansible.builtin.k8s to kubernetes.core.k8s
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+redirecting (type: modules) ansible.builtin.k8s to kubernetes.core.k8s
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+redirecting (type: modules) ansible.builtin.k8s to kubernetes.core.k8s
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+redirecting (type: modules) ansible.builtin.k8s to kubernetes.core.k8s
+
+TASK [create/k8s_secrets : Check if root token exists in the namespace] ********
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:13
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Put root token of every organization] ***************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:25
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [Checking if the docker credentials already exists] ***********************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:43
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/setup : check if dir exists or not] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:9
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/setup : Ensures dir exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:17
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/setup : Check if Kubernetes-auth already created for Organization] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:26
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/setup : Check if policy exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:36
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/setup : Check docker cred exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:47
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+ok: [localhost] => {"api_found": true, "changed": false, "resources": [{"apiVersion": "v1", "data": {".dockerconfigjson": "eyJhdXRocyI6IHsiaW5kZXguZG9ja2VyLmlvL2h5cGVybGVkZ2VybGFicyI6IHsidXNlcm5hbWUiOiAiYWRpdHlham9zaGkxMiIsICJwYXNzd29yZCI6ICJGYXJjcnlAMjAxNCIsICJlbWFpbCI6ICJ0ZXN0QGFiYy5tYWlsIiwgImF1dGgiOiAiWVdScGRIbGhhbTl6YUdreE1qcEdZWEpqY25sQU1qQXhOQT09In19fQ=="}, "kind": "Secret", "metadata": {"creationTimestamp": "2022-07-17T14:57:37Z", "managedFields": [{"apiVersion": "v1", "fieldsType": "FieldsV1", "fieldsV1": {"f:data": {".": {}, "f:.dockerconfigjson": {}}, "f:type": {}}, "manager": "OpenAPI-Generator", "operation": "Update", "time": "2022-07-17T14:57:37Z"}], "name": "regcred", "namespace": "supplychain-net", "resourceVersion": "68625", "uid": "c3e18f3f-ed9c-49e5-a9b9-217dee9d6a4f"}, "type": "kubernetes.io/dockerconfigjson"}]}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/setup : Check git https cred exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:58
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/setup : check if certs exists in vault.] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:69
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+META: role_complete for localhost
+
+TASK [create/k8s_secrets : set_fact] *******************************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:51
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : set_fact] *******************************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:55
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : set_fact] *******************************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:59
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Create the docker pull credentials] *****************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:65
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Check Ambassador cred exists] ***********************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:83
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Check if ca certs already created] ******************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:97
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Check if ca key already created] ********************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:112
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Create the Ambassador credentials] ******************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:127
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Check Ambassador cred exists for orderers] **********
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:151
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Check if ca certs already created for orderers] *****
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:165
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Check if ca key already created for orderers] *******
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:180
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Create the Ambassador credentials for orderers] *****
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:195
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Check if endorser certs secret exists in the namespace] ***
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:219
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Create endorser certs secret exists in the namespace] ***
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:231
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+META: role_complete for localhost
+
+TASK [Create vault token secret] ***********************************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/setup/vault_kubernetes/tasks/main.yaml:33
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+redirecting (type: modules) ansible.builtin.k8s to kubernetes.core.k8s
+redirecting (type: modules) ansible.builtin.k8s to kubernetes.core.k8s
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+redirecting (type: modules) ansible.builtin.k8s to kubernetes.core.k8s
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+redirecting (type: modules) ansible.builtin.k8s to kubernetes.core.k8s
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+redirecting (type: modules) ansible.builtin.k8s to kubernetes.core.k8s
+
+TASK [create/k8s_secrets : Check if root token exists in the namespace] ********
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:13
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+ok: [localhost] => {"api_found": true, "changed": false, "resources": []}
+
+TASK [create/k8s_secrets : Put root token of every organization] ***************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:25
+redirecting (type: modules) ansible.builtin.k8s to kubernetes.core.k8s
+changed: [localhost] => {"changed": true, "method": "create", "result": {"apiVersion": "v1", "data": {"config.yaml": "", "token": "aHZzLnFwYjlUeVVWSWtkQnVCRE1ieUFtQ0VIeQ=="}, "kind": "Secret", "metadata": {"creationTimestamp": "2022-07-17T16:13:37Z", "managedFields": [{"apiVersion": "v1", "fieldsType": "FieldsV1", "fieldsV1": {"f:data": {".": {}, "f:config.yaml": {}, "f:token": {}}, "f:type": {}}, "manager": "OpenAPI-Generator", "operation": "Update", "time": "2022-07-17T16:13:37Z"}], "name": "roottoken", "namespace": "supplychain-net", "resourceVersion": "85771", "uid": "9a1b8240-7f06-4aa7-a983-3e1abe552a15"}, "type": "Opaque"}}
+
+TASK [Checking if the docker credentials already exists] ***********************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:43
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/setup : check if dir exists or not] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:9
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/setup : Ensures dir exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:17
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/setup : Check if Kubernetes-auth already created for Organization] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:26
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/setup : Check if policy exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:36
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/setup : Check docker cred exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:47
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+ok: [localhost] => {"api_found": true, "changed": false, "resources": [{"apiVersion": "v1", "data": {".dockerconfigjson": "eyJhdXRocyI6IHsiaW5kZXguZG9ja2VyLmlvL2h5cGVybGVkZ2VybGFicyI6IHsidXNlcm5hbWUiOiAiYWRpdHlham9zaGkxMiIsICJwYXNzd29yZCI6ICJGYXJjcnlAMjAxNCIsICJlbWFpbCI6ICJ0ZXN0QGFiYy5tYWlsIiwgImF1dGgiOiAiWVdScGRIbGhhbTl6YUdreE1qcEdZWEpqY25sQU1qQXhOQT09In19fQ=="}, "kind": "Secret", "metadata": {"creationTimestamp": "2022-07-17T14:57:37Z", "managedFields": [{"apiVersion": "v1", "fieldsType": "FieldsV1", "fieldsV1": {"f:data": {".": {}, "f:.dockerconfigjson": {}}, "f:type": {}}, "manager": "OpenAPI-Generator", "operation": "Update", "time": "2022-07-17T14:57:37Z"}], "name": "regcred", "namespace": "supplychain-net", "resourceVersion": "68625", "uid": "c3e18f3f-ed9c-49e5-a9b9-217dee9d6a4f"}, "type": "kubernetes.io/dockerconfigjson"}]}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/setup : Check git https cred exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:58
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/check/setup : check if certs exists in vault.] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:69
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+META: role_complete for localhost
+
+TASK [create/k8s_secrets : set_fact] *******************************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:51
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : set_fact] *******************************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:55
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : set_fact] *******************************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:59
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Create the docker pull credentials] *****************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:65
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Check Ambassador cred exists] ***********************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:83
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Check if ca certs already created] ******************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:97
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Check if ca key already created] ********************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:112
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Create the Ambassador credentials] ******************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:127
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Check Ambassador cred exists for orderers] **********
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:151
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Check if ca certs already created for orderers] *****
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:165
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Check if ca key already created for orderers] *******
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:180
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Create the Ambassador credentials for orderers] *****
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:195
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Check if endorser certs secret exists in the namespace] ***
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:219
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [create/k8s_secrets : Create endorser certs secret exists in the namespace] ***
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/k8s_secrets/tasks/main.yaml:231
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+META: role_complete for localhost
+
+TASK [setup/vault_kubernetes : Get the kubernetes server url] ******************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/setup/vault_kubernetes/tasks/main.yaml:44
+changed: [localhost] => {"changed": true, "cmd": "KUBECONFIG=/home/bevel/build/config kubectl config view --minify | grep server | cut -f 2- -d \":\" | tr -d \" \"\n", "delta": "0:00:00.111741", "end": "2022-07-17 16:13:40.612552", "msg": "", "rc": 0, "start": "2022-07-17 16:13:40.500811", "stderr": "", "stderr_lines": [], "stdout": "https://bevel-dns-6a0e538d.hcp.centralindia.azmk8s.io:443", "stdout_lines": ["https://bevel-dns-6a0e538d.hcp.centralindia.azmk8s.io:443"]}
+
+TASK [Create value file for vault_kubernetes] **********************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/setup/vault_kubernetes/tasks/main.yaml:51
+
+TASK [helm_component : Ensures /home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/releases/dev/supplychain/supplychain dir exists] ***
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/helm_component/tasks/main.yaml:14
+ok: [localhost] => {"changed": false, "gid": 0, "group": "root", "mode": "0755", "owner": "root", "path": "/home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/releases/dev/supplychain/supplychain", "size": 4096, "state": "directory", "uid": 0}
+
+TASK [helm_component : create value file for supplychain-vaultkubernetes-job] ***
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/helm_component/tasks/main.yaml:23
+ok: [localhost] => {"changed": false, "checksum": "a0673a62a3846d412fd5cdfe2d093a87d172ddde", "dest": "/home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/releases/dev/supplychain/supplychain/supplychain-vaultkubernetes-job.yaml", "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "/home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/releases/dev/supplychain/supplychain/supplychain-vaultkubernetes-job.yaml", "size": 966, "state": "file", "uid": 0}
+
+TASK [Helm lint] ***************************************************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/helm_component/tasks/main.yaml:32
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/helm_lint : Check if value file exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/helm_lint/tasks/main.yaml:16
+ok: [localhost] => {"changed": false, "stat": {"atime": 1658069865.2807546, "attr_flags": "e", "attributes": ["extents"], "block_size": 4096, "blocks": 8, "charset": "unknown", "checksum": "a0673a62a3846d412fd5cdfe2d093a87d172ddde", "ctime": 1658069864.7687552, "dev": 64513, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 3626751, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mimetype": "unknown", "mode": "0644", "mtime": 1658069864.4967554, "nlink": 1, "path": "/home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/releases/dev/supplychain/supplychain/supplychain-vaultkubernetes-job.yaml", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 966, "uid": 0, "version": "3436199913", "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+
+TASK [Check or create test directory] ******************************************
+task path: /home/bevel/platforms/shared/configuration/roles/helm_lint/tasks/main.yaml:22
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+redirecting (type: modules) ansible.builtin.k8s_info to kubernetes.core.k8s_info
+
+TASK [../../shared/configuration/roles/check/setup : check if dir exists or not] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:9
+ok: [localhost] => {"changed": false, "stat": {"exists": false}}
+
+TASK [../../shared/configuration/roles/check/setup : Ensures dir exists] *******
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:17
+changed: [localhost] => {"changed": true, "gid": 0, "group": "root", "mode": "0755", "owner": "root", "path": "./build/test", "size": 4096, "state": "directory", "uid": 0}
+
+TASK [../../shared/configuration/roles/check/setup : Check if Kubernetes-auth already created for Organization] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:26
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [../../shared/configuration/roles/check/setup : Check if policy exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:36
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [../../shared/configuration/roles/check/setup : Check docker cred exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:47
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [../../shared/configuration/roles/check/setup : Check git https cred exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:58
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [../../shared/configuration/roles/check/setup : check if certs exists in vault.] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:69
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+META: role_complete for localhost
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/helm_lint : Load file into memory] ***
+task path: /home/bevel/platforms/shared/configuration/roles/helm_lint/tasks/main.yaml:31
+ok: [localhost] => {"ansible_facts": {"apiVersion": "helm.fluxcd.io/v1", "kind": "HelmRelease", "metadata": {"annotations": {"fluxcd.io/automated": "false"}, "name": "supplychain-vaultkubenertes-job", "namespace": "supplychain-net"}, "spec": {"chart": {"git": "ssh://git@github.com/adityajoshi12/bevel.git", "path": "platforms/hyperledger-fabric/charts/vault_kubernetes", "ref": "test"}, "releaseName": "supplychain-vaultkubenertes-job", "values": {"k8s": {"kubernetes_url": "https://bevel-dns-6a0e538d.hcp.centralindia.azmk8s.io:443"}, "metadata": {"component_type": "orderer", "images": {"alpineutils": "index.docker.io/hyperledgerlabs/alpine-utils:1.0"}, "name": "supplychain", "namespace": "supplychain-net"}, "vault": {"address": "http://20.197.63.209:8200", "authpath": "devsupplychain-net-auth", "imagesecretname": "regcred", "policy": "vault-crypto-orderer-supplychain-net-ro", "reviewer_service": "vault-reviewer", "role": "vault-role", "secret_path": "secretv2", "serviceaccountname": "vault-auth"}}}}, "ansible_included_var_files": ["/home/bevel/platforms/hyperledger-fabric/releases/dev/supplychain/supplychain/supplychain-vaultkubernetes-job.yaml"], "changed": false}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/helm_lint : Create value file] ***
+task path: /home/bevel/platforms/shared/configuration/roles/helm_lint/tasks/main.yaml:36
+ok: [localhost] => {"changed": false, "checksum": "3340b7fb60e525b22649b78cc9f82f570a3bd2a7", "dest": "./build/test/supplychain-vaultkubenertes-job.yaml", "gid": 0, "group": "root", "md5sum": "bca10e094416db0f924c9adb0edd00e7", "mode": "0644", "owner": "root", "size": 540, "src": "/root/.ansible/tmp/ansible-tmp-1658074423.9583988-31368-51350582727466/source", "state": "file", "uid": 0}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/helm_lint : Run helm lint] ***
+task path: /home/bevel/platforms/shared/configuration/roles/helm_lint/tasks/main.yaml:42
+changed: [localhost] => {"changed": true, "cmd": "helm lint -f \"./build/test/supplychain-vaultkubenertes-job.yaml\" \"/home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/charts/vault_kubernetes\"\n", "delta": "0:00:00.086757", "end": "2022-07-17 16:13:45.012022", "msg": "", "rc": 0, "start": "2022-07-17 16:13:44.925265", "stderr": "", "stderr_lines": [], "stdout": "==> Linting /home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/charts/vault_kubernetes\n[INFO] Chart.yaml: icon is recommended\n\n1 chart(s) linted, 0 chart(s) failed", "stdout_lines": ["==> Linting /home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/charts/vault_kubernetes", "[INFO] Chart.yaml: icon is recommended", "", "1 chart(s) linted, 0 chart(s) failed"]}
+META: role_complete for localhost
+META: role_complete for localhost
+
+TASK [Git Push] ****************************************************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/setup/vault_kubernetes/tasks/main.yaml:70
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : Check if directory: /home/bevel/platforms/hyperledger-fabric/configuration/../../../ exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:9
+ok: [localhost] => {"changed": false, "gid": 1000, "group": "1000", "mode": "0777", "owner": "1000", "path": "/home/bevel/platforms/hyperledger-fabric/configuration/../../../", "size": 4096, "state": "directory", "uid": 1000}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : Execute git push for ssh] ***
+task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:15
