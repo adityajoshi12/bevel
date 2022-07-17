@@ -5545,3 +5545,119 @@ ok: [localhost] => {"changed": false, "gid": 1000, "group": "1000", "mode": "077
 
 TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : Execute git push for ssh] ***
 task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:15
+changed: [localhost] => {"changed": true, "cmd": "cd \"/home/bevel/platforms/hyperledger-fabric/configuration/../../../\"\necho \"---------------GIT PUSH---------------\"\nexport GIT_SSH_COMMAND='ssh -i /home/bevel/build/gitops'\ngit config user.email adityaprakashjoshi1@gmail.com\ngit config user.name adityajoshi12\ngit --git-dir=/home/bevel/platforms/hyperledger-fabric/configuration/../../..//.git add -A .\n\n# To ignore a directory add it add reset path\nreset_path=platforms/hyperledger-fabric/configuration\nif [ -n \"$reset_path\" ]; then\n    git --git-dir=/home/bevel/platforms/hyperledger-fabric/configuration/../../..//.git reset \"platforms/hyperledger-fabric/configuration\"\nfi  \n\ngit --git-dir=/home/bevel/platforms/hyperledger-fabric/configuration/../../..//.git commit -s -m \"[ci skip] Pushing anchorpeer files\" || true\ngit --git-dir=/home/bevel/platforms/hyperledger-fabric/configuration/../../..//.git push ssh://git@github.com/adityajoshi12/bevel.git HEAD:test  \n", "delta": "0:00:02.618731", "end": "2022-07-17 16:19:50.209499", "msg": "", "rc": 0, "start": "2022-07-17 16:19:47.590768", "stderr": "fatal: not in a git directory\nfatal: not in a git directory\nTo ssh://github.com/adityajoshi12/bevel.git\n   aae8ce7..92c9517  HEAD -> test", "stderr_lines": ["fatal: not in a git directory", "fatal: not in a git directory", "To ssh://github.com/adityajoshi12/bevel.git", "   aae8ce7..92c9517  HEAD -> test"], "stdout": "---------------GIT PUSH---------------\nUnstaged changes after reset:\nM\tplatforms/hyperledger-fabric/configuration/roles/k8_component/templates/reviewer_rbac.tpl\n[main 92c9517] [ci skip] Pushing anchorpeer files\n 2 files changed, 134 insertions(+), 3 deletions(-)", "stdout_lines": ["---------------GIT PUSH---------------", "Unstaged changes after reset:", "M\tplatforms/hyperledger-fabric/configuration/roles/k8_component/templates/reviewer_rbac.tpl", "[main 92c9517] [ci skip] Pushing anchorpeer files", " 2 files changed, 134 insertions(+), 3 deletions(-)"]}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : Execute git push for https] ***
+task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:41
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : stdout for SSH gitpush] ***
+task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:65
+ok: [localhost] => {
+    "msg": [
+        "---------------GIT PUSH---------------",
+        "Unstaged changes after reset:",
+        "M\tplatforms/hyperledger-fabric/configuration/roles/k8_component/templates/reviewer_rbac.tpl",
+        "[main 92c9517] [ci skip] Pushing anchorpeer files",
+        " 2 files changed, 134 insertions(+), 3 deletions(-)"
+    ]
+}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : stderr for SSH gitpush] ***
+task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:74
+ok: [localhost] => {
+    "msg": [
+        "fatal: not in a git directory",
+        "fatal: not in a git directory",
+        "To ssh://github.com/adityajoshi12/bevel.git",
+        "   aae8ce7..92c9517  HEAD -> test"
+    ]
+}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : stdout for gitpush] ***
+task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:84
+skipping: [localhost] => {}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : stderr for git_push] ***
+task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:92
+skipping: [localhost] => {}
+META: role_complete for localhost
+META: role_complete for localhost
+
+TASK [Create CLI pod for each peer with it enabled] ****************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/deploy-network.yaml:228
+skipping: [localhost] => (item={'organization': None, 'name': 'supplychain', 'country': 'UK', 'state': 'London', 'location': 'London', 'subject': 'O=Orderer,L=51.50/-0.13/London,C=GB', 'type': 'orderer', 'external_url_suffix': 'develop.local.com', 'org_status': 'new', 'fabric_console': 'enabled', 'ca_data': {'url': 'ca.supplychain-net:7054', 'certificate': '/home/bevel/build/supplychain/server.crt'}, 'cloud_provider': 'azure', 'k8s': {'region': 'blr1', 'context': 'bevel', 'config_file': '/home/bevel/build/config'}, 'vault': {'url': 'http://20.197.63.209:8200', 'root_token': 'hvs.qpb9TyUVIkdBuBDMbyAmCEHy', 'secret_path': 'secretv2'}, 'gitops': {'git_protocol': 'ssh', 'git_url': 'ssh://git@github.com/adityajoshi12/bevel.git', 'branch': 'test', 'release_dir': 'platforms/hyperledger-fabric/releases/dev', 'chart_source': 'platforms/hyperledger-fabric/charts', 'git_repo': 'github.com/adityajoshi12/bevel.git', 'username': 'adityajoshi12', 'password': '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', 'email': 'adityaprakashjoshi1@gmail.com', 'private_key': '/home/bevel/build/gitops'}, 'services': {'ca': {'name': 'ca', 'subject': '/C=GB/ST=London/L=London/O=Orderer/CN=ca.supplychain-net', 'type': 'ca', 'grpc': {'port': 7054}}, 'consensus': {'name': 'raft'}, 'orderers': [{'orderer': None, 'name': 'orderer1', 'type': 'orderer', 'consensus': 'raft', 'grpc': {'port': 7050}}]}})  => {"ansible_loop_var": "org", "changed": false, "org": {"ca_data": {"certificate": "/home/bevel/build/supplychain/server.crt", "url": "ca.supplychain-net:7054"}, "cloud_provider": "azure", "country": "UK", "external_url_suffix": "develop.local.com", "fabric_console": "enabled", "gitops": {"branch": "test", "chart_source": "platforms/hyperledger-fabric/charts", "email": "adityaprakashjoshi1@gmail.com", "git_protocol": "ssh", "git_repo": "github.com/adityajoshi12/bevel.git", "git_url": "ssh://git@github.com/adityajoshi12/bevel.git", "password": "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", "private_key": "/home/bevel/build/gitops", "release_dir": "platforms/hyperledger-fabric/releases/dev", "username": "adityajoshi12"}, "k8s": {"config_file": "/home/bevel/build/config", "context": "bevel", "region": "blr1"}, "location": "London", "name": "supplychain", "org_status": "new", "organization": null, "services": {"ca": {"grpc": {"port": 7054}, "name": "ca", "subject": "/C=GB/ST=London/L=London/O=Orderer/CN=ca.supplychain-net", "type": "ca"}, "consensus": {"name": "raft"}, "orderers": [{"consensus": "raft", "grpc": {"port": 7050}, "name": "orderer1", "orderer": null, "type": "orderer"}]}, "state": "London", "subject": "O=Orderer,L=51.50/-0.13/London,C=GB", "type": "orderer", "vault": {"root_token": "hvs.qpb9TyUVIkdBuBDMbyAmCEHy", "secret_path": "secretv2", "url": "http://20.197.63.209:8200"}}, "skip_reason": "Conditional result was False"}
+
+TASK [Create Value file for CLI Pod] *******************************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/cli_pod/tasks/main.yaml:16
+
+TASK [helm_component : Ensures /home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/releases/dev/manufacturer/cli dir exists] ***
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/helm_component/tasks/main.yaml:14
+ok: [localhost] => {"changed": false, "gid": 0, "group": "root", "mode": "0755", "owner": "root", "path": "/home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/releases/dev/manufacturer/cli", "size": 4096, "state": "directory", "uid": 0}
+
+TASK [helm_component : create value file for peer0-manufacturer-cli] ***********
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/helm_component/tasks/main.yaml:23
+ok: [localhost] => {"changed": false, "checksum": "690ce85530ab09eed4f9e4b2ef716e9224f8e593", "dest": "/home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/releases/dev/manufacturer/cli/peer0-manufacturer-cli.yaml", "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "/home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/releases/dev/manufacturer/cli/peer0-manufacturer-cli.yaml", "size": 1172, "state": "file", "uid": 0}
+
+TASK [Helm lint] ***************************************************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/helm_component/tasks/main.yaml:32
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/helm_lint : Check if value file exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/helm_lint/tasks/main.yaml:16
+ok: [localhost] => {"changed": false, "stat": {"atime": 1658072350.8563793, "attr_flags": "e", "attributes": ["extents"], "block_size": 4096, "blocks": 8, "charset": "unknown", "checksum": "690ce85530ab09eed4f9e4b2ef716e9224f8e593", "ctime": 1658072350.3363814, "dev": 64513, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 7742276, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mimetype": "unknown", "mode": "0644", "mtime": 1658072350.1283822, "nlink": 1, "path": "/home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/releases/dev/manufacturer/cli/peer0-manufacturer-cli.yaml", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 1172, "uid": 0, "version": "3038383565", "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+
+TASK [Check or create test directory] ******************************************
+task path: /home/bevel/platforms/shared/configuration/roles/helm_lint/tasks/main.yaml:22
+
+TASK [../../shared/configuration/roles/check/setup : check if dir exists or not] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:9
+ok: [localhost] => {"changed": false, "stat": {"atime": 1658074423.378228, "attr_flags": "e", "attributes": ["extents"], "block_size": 4096, "blocks": 8, "charset": "unknown", "ctime": 1658074786.0405908, "dev": 64513, "device_type": 0, "executable": true, "exists": true, "gid": 0, "gr_name": "root", "inode": 3626754, "isblk": false, "ischr": false, "isdir": true, "isfifo": false, "isgid": false, "islnk": false, "isreg": false, "issock": false, "isuid": false, "mimetype": "unknown", "mode": "0755", "mtime": 1658074786.0405908, "nlink": 2, "path": "./build/test", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 4096, "uid": 0, "version": "4197237393", "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+
+TASK [../../shared/configuration/roles/check/setup : Ensures dir exists] *******
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:17
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [../../shared/configuration/roles/check/setup : Check if Kubernetes-auth already created for Organization] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:26
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [../../shared/configuration/roles/check/setup : Check if policy exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:36
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [../../shared/configuration/roles/check/setup : Check docker cred exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:47
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [../../shared/configuration/roles/check/setup : Check git https cred exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:58
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [../../shared/configuration/roles/check/setup : check if certs exists in vault.] ***
+task path: /home/bevel/platforms/shared/configuration/roles/check/setup/tasks/main.yaml:69
+skipping: [localhost] => {"changed": false, "skip_reason": "Conditional result was False"}
+META: role_complete for localhost
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/helm_lint : Load file into memory] ***
+task path: /home/bevel/platforms/shared/configuration/roles/helm_lint/tasks/main.yaml:31
+ok: [localhost] => {"ansible_facts": {"apiVersion": "helm.fluxcd.io/v1", "kind": "HelmRelease", "metadata": {"annotations": {"fluxcd.io/automated": "false"}, "name": "peer0-manufacturer-cli", "namespace": "manufacturer-net"}, "spec": {"chart": {"git": "ssh://git@github.com/adityajoshi12/bevel.git", "path": "platforms/hyperledger-fabric/charts/fabric_cli", "ref": "test"}, "releaseName": "peer0-manufacturer-cli", "values": {"metadata": {"images": {"alpineutils": "index.docker.io/hyperledgerlabs/alpine-utils:1.0", "fabrictools": "hyperledger/fabric-tools:2.2.2"}, "namespace": "manufacturer-net"}, "orderer": {"address": "orderer1.supplychain-net:7050"}, "peer": {"address": "peer0.manufacturer-net:7051", "localmspid": "manufacturerMSP", "name": "peer0", "tlsstatus": true}, "storage": {"class": "manufacturersc", "size": "256Mi"}, "vault": {"address": "http://20.197.63.209:8200", "adminsecretprefix": "secretv2/data/crypto/peerOrganizations/manufacturer-net/users/admin", "authpath": "devmanufacturer-net-auth", "imagesecretname": "regcred", "orderersecretprefix": "secretv2/data/crypto/peerOrganizations/manufacturer-net/orderer", "role": "vault-role", "serviceaccountname": "vault-auth", "tls": false}}}}, "ansible_included_var_files": ["/home/bevel/platforms/hyperledger-fabric/releases/dev/manufacturer/cli/peer0-manufacturer-cli.yaml"], "changed": false}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/helm_lint : Create value file] ***
+task path: /home/bevel/platforms/shared/configuration/roles/helm_lint/tasks/main.yaml:36
+ok: [localhost] => {"changed": false, "checksum": "21eb0399184ca43e81f689407b6a547a8fab30a6", "dest": "./build/test/peer0-manufacturer-cli.yaml", "gid": 0, "group": "root", "md5sum": "4ef9f4f17e57035915ed66ad144bfe70", "mode": "0644", "owner": "root", "size": 759, "src": "/root/.ansible/tmp/ansible-tmp-1658074794.3361897-41382-94470088782228/source", "state": "file", "uid": 0}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/helm_lint : Run helm lint] ***
+task path: /home/bevel/platforms/shared/configuration/roles/helm_lint/tasks/main.yaml:42
+changed: [localhost] => {"changed": true, "cmd": "helm lint -f \"./build/test/peer0-manufacturer-cli.yaml\" \"/home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/charts/fabric_cli\"\n", "delta": "0:00:00.101339", "end": "2022-07-17 16:19:55.480283", "msg": "", "rc": 0, "start": "2022-07-17 16:19:55.378944", "stderr": "", "stderr_lines": [], "stdout": "==> Linting /home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/charts/fabric_cli\n[INFO] Chart.yaml: icon is recommended\n\n1 chart(s) linted, 0 chart(s) failed", "stdout_lines": ["==> Linting /home/bevel/platforms/hyperledger-fabric/configuration/../../../platforms/hyperledger-fabric/charts/fabric_cli", "[INFO] Chart.yaml: icon is recommended", "", "1 chart(s) linted, 0 chart(s) failed"]}
+META: role_complete for localhost
+META: role_complete for localhost
+
+TASK [Git Push] ****************************************************************
+task path: /home/bevel/platforms/hyperledger-fabric/configuration/roles/create/cli_pod/tasks/main.yaml:44
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : Check if directory: /home/bevel/platforms/hyperledger-fabric/configuration/../../../ exists] ***
+task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:9
+ok: [localhost] => {"changed": false, "gid": 1000, "group": "1000", "mode": "0777", "owner": "1000", "path": "/home/bevel/platforms/hyperledger-fabric/configuration/../../../", "size": 4096, "state": "directory", "uid": 1000}
+
+TASK [/home/bevel/platforms/hyperledger-fabric/configuration/../../shared/configuration/roles/git_push : Execute git push for ssh] ***
+task path: /home/bevel/platforms/shared/configuration/roles/git_push/tasks/main.yaml:15
