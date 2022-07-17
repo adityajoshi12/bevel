@@ -1,15 +1,10 @@
-{
-  "unseal_keys_b64": [
-    "Kv0M/C7lqYbUW3hsYfFiopJofXvoXHai36g7hQ3kYAI="
-  ],
-  "unseal_keys_hex": [
-    "12c75cbca88e050be5d481df6d0f56745cf07df44df63860d891b502e5fd8707"
-  ],
-  "unseal_shares": 1,
-  "unseal_threshold": 1,
-  "recovery_keys_b64": [],
-  "recovery_keys_hex": [],
-  "recovery_keys_shares": 5,
-  "recovery_keys_threshold": 3,
-  "root_token": "hvs.nPjYDMb0IR2TAG2Z6MOZ7dRF"
-}
+f2KINXsGcTkeqJFmHP3Y5nRhbEKPLYtDvkSWhOxd49o=
+hvs.qpb9TyUVIkdBuBDMbyAmCEHy
+
+
+docker run -it -v $(pwd):/home/bevel/ --network="host" ghcr.io/hyperledger/bevel-build:latest bash
+
+# go to bevel directory
+cd bevel
+# Run the provisioning scripts
+ansible-playbook  platforms/shared/configuration/site.yaml -e "@./build/network.yaml"
