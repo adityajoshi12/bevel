@@ -157,7 +157,7 @@ spec:
               echo "${TLSCACERTS}" >> ${OUTPUT_PATH}/tlscacerts/tlsca.crt
           env:
             - name: VAULT_ADDR
-              value: http://40.80.95.60:8200
+              value: http://20.197.63.209:8200
             - name: KUBERNETES_AUTH_PATH
               value: devmanufacturer-net-auth
             - name: VAULT_APP_ROLE
